@@ -14,13 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
+    @Autowired(required = true)
     private UserService userService;
 
-    @Autowired(required = true)
-    @Qualifier(value = "userService")
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
 
     @RequestMapping(value = "users",method = RequestMethod.GET)
     public String listUsers(Model model){

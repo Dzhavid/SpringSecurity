@@ -1,9 +1,12 @@
 package net.eldarov.usermanager.model;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
+@Transactional
 public class User {
     @Id
     @Column(name = "ID")

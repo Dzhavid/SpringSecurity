@@ -5,7 +5,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Books Page</title>
+    <title>Users Page</title>
 
     <style type="text/css">
         .tg {
@@ -80,7 +80,7 @@
 
 <c:url var="addAction" value="/users/add"/>
 
-<form:form action="${addAction}" commandName="user">
+<form:form action="${addAction}" modelAttribute="user">
     <table>
         <c:if test="${!empty user.name}">
             <tr>
