@@ -61,8 +61,7 @@
   </tr>
   <tr>
     <td>${user.id}</td>
-    <td>${user.name}</td>
-    <td>${user.lastName}</td>
+    <td>${user.username}</td>
   </tr>
 </table>
 </body>

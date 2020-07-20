@@ -3,6 +3,8 @@ package net.eldarov.usermanager.service;
 import net.eldarov.usermanager.dao.UserDao;
 import net.eldarov.usermanager.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,5 +42,15 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUser(User user) {
         this.userDao.updateUser(user);
+    }
+
+    @Transactional
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+      User user = userDao.getUserByName(s);
+      if(user==null){
+          throw new UsernameNotFoundException("User not found");
+      }
+      return user;
     }
 }

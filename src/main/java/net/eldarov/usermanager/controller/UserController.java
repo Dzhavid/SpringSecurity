@@ -17,6 +17,10 @@ public class UserController {
     @Autowired(required = true)
     private UserService userService;
 
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String loginPage() {
+        return "login";
+    }
 
     @RequestMapping(value = "users",method = RequestMethod.GET)
     public String listUsers(Model model){

@@ -1,5 +1,6 @@
 package net.eldarov.usermanager.config;
 
+import net.eldarov.usermanager.model.Role;
 import net.eldarov.usermanager.model.User;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class AppConfig {
     @Bean
     public BasicDataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/users?useUnicode=true&serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/spring_security_app?useUnicode=true&serverTimezone=UTC");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUsername(env.getProperty("db.username"));
         dataSource.setPassword(env.getProperty("db.password"));
@@ -44,7 +45,7 @@ public class AppConfig {
         props.put("hibernate.dialect",env.getProperty("hibernate.dialect"));
         props.put("hibernate.enable_lazy_load_no_trans",env.getProperty("hibernate.enable_lazy_load_no_trans"));
         factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(User.class);
+        factoryBean.setAnnotatedClasses(User.class,Role.class);
         return factoryBean;
     }
 

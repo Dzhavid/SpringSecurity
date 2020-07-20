@@ -19,7 +19,10 @@ public class UserDaoImpl implements UserDao {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
+    @Override
+    public User getUserByName(String name) {
+        return sessionFactory.getCurrentSession().load(User.class,name);
+    }
     @Override
     public User getUserById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
