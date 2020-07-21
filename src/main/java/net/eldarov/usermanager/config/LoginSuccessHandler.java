@@ -1,5 +1,6 @@
 package net.eldarov.usermanager.config;
 
+import net.eldarov.usermanager.model.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -18,13 +19,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException, ServletException {
-        Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        if (roles.contains("ROLE_USER")) {
-            httpServletResponse.sendRedirect("/inf");
-        } else if (roles.contains("ROLE_ADMIN")) {
-            httpServletResponse.sendRedirect("/admin");
-        } else {
-            httpServletResponse.sendRedirect("/");
-        }
+      //  httpServletResponse.sendRedirect("/users");
+
+        User user = (User) authentication.getPrincipal();
+        boolean isAdmin = user.getRoles().stream().anyMatch(x -> x.getName().contains("ROLE_ADMIN"));
+        String redirect = isAdmin ? "/admin" : "/user";
+        httpServletResponse.sendRedirect(redirect);
+
+
     }
 }

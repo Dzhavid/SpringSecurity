@@ -1,6 +1,6 @@
 package net.eldarov.usermanager.dao;
 
-import net.eldarov.usermanager.model.User;
+import net.eldarov.usermanager.model.*;
 
 import java.util.List;
 

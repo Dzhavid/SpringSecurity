@@ -21,7 +21,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="BookManager" target="7" />
+      <module name="BookManager" target="8" />
       <module name="BookManger" target="1.6" />
     </bytecodeTargetLevel>
   </component>

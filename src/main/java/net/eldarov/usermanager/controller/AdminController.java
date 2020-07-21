@@ -22,13 +22,13 @@ public class AdminController {
     public String listUsers(Model model){
         model.addAttribute("user",new User());
         model.addAttribute("listUsers",this.userService.listUser());
-        return "users";
+        return "admin";
     }
 
     @DeleteMapping("/remove/{id}")
     public String removeUser(@PathVariable("id") int id){
         this.userService.removeUser(id);
-        return "redirect:/users";
+        return "admin";
     }
 
     @PostMapping(value = "/users/add")
@@ -38,14 +38,14 @@ public class AdminController {
         }else {
             this.userService.updateUser(user);
         }
-        return "redirect:/users";
+        return "admin";
     }
 
     @PostMapping("edit/{id}")
     public String editBook(@PathVariable("id") int id, Model model){
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUser());
-        return "users";
+        return "admin";
     }
 
 }

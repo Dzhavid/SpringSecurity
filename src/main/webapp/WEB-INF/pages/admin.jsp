@@ -114,8 +114,11 @@
                            value="<spring:message text="Add User"/>"/>
                 </c:if>
             </td>
+
         </tr>
     </table>
 </form:form>
 </body>
+
+<a href="<c:url value='/logout'/>">Out</a>
 </html>

@@ -2,14 +2,11 @@ package net.eldarov.usermanager.model;
 
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "roles")
-@Transactional
 public class Role implements GrantedAuthority {
 
     @Id
@@ -18,9 +15,6 @@ public class Role implements GrantedAuthority {
 
     @Column(name = "name")
     private String name;
-
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
 
     public Role() {
     }
@@ -41,20 +35,11 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", users=" + users +
                 '}';
     }
 

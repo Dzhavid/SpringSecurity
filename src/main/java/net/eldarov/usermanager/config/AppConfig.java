@@ -1,7 +1,7 @@
 package net.eldarov.usermanager.config;
 
 import net.eldarov.usermanager.model.Role;
-import net.eldarov.usermanager.model.User;
+import net.eldarov.usermanager.model.*;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;

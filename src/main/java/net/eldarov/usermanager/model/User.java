@@ -3,7 +3,7 @@ package net.eldarov.usermanager.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users2")
-@Transactional
 public class User implements UserDetails {
 
     @Id
@@ -25,9 +24,10 @@ public class User implements UserDetails {
     private String password;
 
 
-    @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(name="user_roles",
+            joinColumns=@JoinColumn(name="user_id", referencedColumnName = "id"),
+            inverseJoinColumns=@JoinColumn(name="role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 
     public Long getId() {

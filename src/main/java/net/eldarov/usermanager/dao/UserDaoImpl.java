@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
     }
     @Override
     public User getUserByName(String name) {
-        return sessionFactory.getCurrentSession().load(User.class,name);
+        return (User) sessionFactory.getCurrentSession().createQuery("FROM User WHERE username =:name").setParameter("name", name).uniqueResult();
     }
     @Override
     public User getUserById(int id) {

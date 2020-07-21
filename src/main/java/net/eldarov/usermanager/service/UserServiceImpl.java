@@ -1,7 +1,7 @@
 package net.eldarov.usermanager.service;
 
 import net.eldarov.usermanager.dao.UserDao;
-import net.eldarov.usermanager.model.User;
+import net.eldarov.usermanager.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -3,7 +3,6 @@ package net.eldarov.usermanager.controller;
 import net.eldarov.usermanager.model.User;
 import net.eldarov.usermanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -22,11 +21,18 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping(value = "user")
+    public String infOfUser(Model model){
+        model.addAttribute("user",new User());
+        model.addAttribute("listUsers",this.userService.listUser());
+        return "user";
+    }
+
     @RequestMapping(value = "users",method = RequestMethod.GET)
     public String listUsers(Model model){
         model.addAttribute("user",new User());
         model.addAttribute("listUsers",this.userService.listUser());
-        return "users";
+        return "admin";
     }
 
     @RequestMapping(value = "/users/add",method = RequestMethod.POST)
@@ -36,19 +42,19 @@ public class UserController {
         }else {
             this.userService.updateUser(user);
         }
-        return "redirect:/users";
+        return "admin";
     }
 
     @RequestMapping("/remove/{id}")
     public String removeUser(@PathVariable("id") int id){
         this.userService.removeUser(id);
-        return "redirect:/users";
+        return "admin";
     }
     @RequestMapping("edit/{id}")
     public String editBook(@PathVariable("id") int id, Model model){
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUser());
-        return "users";
+        return "admin";
     }
     @RequestMapping("userdata/{id}")
     public String bookData(@PathVariable("id") int id, Model model){
