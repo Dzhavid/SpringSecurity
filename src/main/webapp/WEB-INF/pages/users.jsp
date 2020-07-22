@@ -5,7 +5,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Users Page</title>
+    <title>Books Page</title>
 
     <style type="text/css">
         .tg {
@@ -59,6 +59,7 @@
         <tr>
             <th width="80">ID</th>
             <th width="120">Name</th>
+            <th width="120">Password</th>
             <th width="60">Edit</th>
             <th width="60">Delete</th>
         </tr>
@@ -66,6 +67,7 @@
             <tr>
                 <td>${user.id}</td>
                 <td><a href="/userdata/${user.id}" target="_blank">${user.username}</a></td>
+                <td>${user.password}</td>
                 <td><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
                 <td><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
             </tr>
@@ -78,7 +80,7 @@
 
 <c:url var="addAction" value="/users/add"/>
 
-<form:form action="${addAction}" modelAttribute="user">
+<form:form action="${addAction}" modelAttribute="user" method="post">
     <table>
         <c:if test="${!empty user.username}">
             <tr>
@@ -95,8 +97,18 @@
         </c:if>
         <tr>
             <td>
+                <form:label path="password">
+                    <spring:message text="password"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="password"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <form:label path="username">
-                    <spring:message text="Name"/>
+                    <spring:message text="username"/>
                 </form:label>
             </td>
             <td>
@@ -114,11 +126,8 @@
                            value="<spring:message text="Add User"/>"/>
                 </c:if>
             </td>
-
         </tr>
     </table>
 </form:form>
 </body>
-
-<a href="<c:url value='/logout'/>">Out</a>
 </html>

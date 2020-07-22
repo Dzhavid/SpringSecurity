@@ -23,7 +23,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         User user = (User) authentication.getPrincipal();
         boolean isAdmin = user.getRoles().stream().anyMatch(x -> x.getName().contains("ROLE_ADMIN"));
-        String redirect = isAdmin ? "/admin" : "/user";
+        String redirect = isAdmin ? "/users" : "/user";
         httpServletResponse.sendRedirect(redirect);
 
 

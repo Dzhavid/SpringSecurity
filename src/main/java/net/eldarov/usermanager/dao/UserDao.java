@@ -9,11 +9,11 @@ public interface UserDao {
 
     public List<User> listUser();
 
-    public void removeUser(Integer id);
+    public void removeUser(Long id);
 
     public void updateUser(User user);
 
-    public User getUserById(int id);
+    public User getUserById(Long id);
 
     User getUserByName(String name);
 }

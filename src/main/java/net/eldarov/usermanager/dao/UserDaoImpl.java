@@ -24,16 +24,17 @@ public class UserDaoImpl implements UserDao {
         return (User) sessionFactory.getCurrentSession().createQuery("FROM User WHERE username =:name").setParameter("name", name).uniqueResult();
     }
     @Override
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         Session session = this.sessionFactory.getCurrentSession();
-        User user = (User) session.load(User.class, new Integer(id));
+        User user = (User) session.load(User.class, new Long(id));
         //logger.info("Book successfully loaded. Book details: " + book);
         return user;
     }
 
     public void addUser(User user) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.persist(user);
+       // session.persist(user);
+        session.saveOrUpdate(user);
     }
 
     public List<User> listUser() {
@@ -42,15 +43,15 @@ public class UserDaoImpl implements UserDao {
         return userList;
     }
 
-    public void removeUser(Integer id) {
+    public void removeUser(Long id) {
         Session session = this.sessionFactory.getCurrentSession();
-        User user = (User) session.load(User.class, new Integer(id));
+        User user = (User) session.load(User.class, new Long(id));
         session.delete(user);
 
     }
 
     public void updateUser(User user) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.update(user);
+        session.saveOrUpdate(user);
     }
 }

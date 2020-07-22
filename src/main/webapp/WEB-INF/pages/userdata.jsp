@@ -56,12 +56,13 @@
   <tr>
     <th width="80">ID</th>
     <th width="120">Name</th>
-    <th width="120">LastName</th>
+    <th width="120">Password</th>
 
   </tr>
   <tr>
     <td>${user.id}</td>
     <td>${user.username}</td>
+    <td>${user.password}</td>
   </tr>
 </table>
 </body>
